@@ -33,28 +33,11 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 COPY ./app /code/app
-COPY ./service_account.json /service_account.json
+# COPY ./service_account.json /service_account.json
+RUN if [ -f ./service_account.json ]; then cp ./service_account.json /service_account.json; fi
+
 
 EXPOSE 8000
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
-
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-# CMD ["fastapi", "run", "app/main.py", "--port", "8000"]
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-# fastapi dev main.py
-
-# docker build -t apiserver .
-# docker run apiserver
-# docker run -d --name apicontainer -p 80:80 apiserver
-
-# docker build -t fastapi-app .
-# docker run -d -p 8000:8000 fastapi-app
-# http://localhost:8000
-
-# docker run --add-host=host.docker.internal:host-gateway -p 8000:8000 apiserver
-
-# docker build -t gcr.io/your-project-id/fastapi-app:latest .

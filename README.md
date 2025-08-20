@@ -476,21 +476,26 @@ make  push
 
 Make  sure  that  your  mlflow  server  is  up  and  running
 
-
 ```bash
 
 
 cd API
 
+```
+
+cp  .env.example  .env
+
+```bash
+
+make api-run
+
+# you can also perform following:
 
 # Start the API server
 
-
 docker build -t  <image name> .
 
-
 docker run -d  -p 8000:8000 <image name>
-
 
 # Access API documentation
 
@@ -539,6 +544,20 @@ curl -X 'POST' \
   -d ''
 
 ```
+
+### Notes
+
+-   For **mlflow_server_url**, use:
+    
+    `http://host.docker.internal:5001` 
+    
+-   The values for **`model_id`** and **`run_id`** can be obtained from your MLflow tracking server.
+    
+    -   `model_id` → available from the registered models section.
+        
+    -   `run_id` → available from the experiment runs.
+
+
 
 
 ### Getting MLflow Run ID

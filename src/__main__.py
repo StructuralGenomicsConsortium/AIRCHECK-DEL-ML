@@ -34,7 +34,6 @@ def main(config_file: str):
         print(f"bucket is {input_bucket} and folder is {input_data_folder}")
         list_of_files = reader.list_gcs_files(bucket_name=input_bucket,
                                               folder_path=input_data_folder)
-        print("list files-----", list_of_files)
     if not isinstance(list_of_files, list):
         list_of_files = [list_of_files]
     for file in list_of_files:
@@ -43,7 +42,6 @@ def main(config_file: str):
             dataset_location=dataset_location, partner_name=partner_name)
 
         start_time = datetime.now()
-        print("processing file------", file)
 
         X, y = reader._read_data(file_path=dataset_location, fps=training_cols,
                                  label=label_col, model_name=model_name, config_file_path=config_location, binarize=is_binary, dry_run=isdry_run, list_of_bucket_files=list_of_files)

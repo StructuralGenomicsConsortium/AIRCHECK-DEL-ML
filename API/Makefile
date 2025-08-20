@@ -29,15 +29,9 @@ deploy:
 	--project=aircheck-398319
 
 api-run:
-	docker build -t  api-server .
-	docker run -d  -p 8000:8000 api-server
+	docker-compose up --build -d
 
-
-
-# Start services in detached mode and follow logs
-up-local:
-	docker-compose up -d
-	docker-compose logs -f
+	
 
 # Alternative approach using & for background process
 up-background:

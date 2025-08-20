@@ -142,7 +142,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
-/data/raw/
+/data/raw/*
 /data/processed/
 
 # mypy
